@@ -7,19 +7,28 @@ import { FlashcardService } from '../shared/flashcard.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div *ngIf="flashcardService.flashcards.length > 0">
-      <h3>Flashcards</h3>
+  <div *ngIf="flashcardService.flashcards.length > 0" class="flashcard-box">
+    <h3>Flashcards</h3>
+
+    <div class="qa">
       <p><strong>Q:</strong> {{ flashcardService.currentCard?.question }}</p>
       <p><strong>A:</strong> {{ flashcardService.currentCard?.answer }}</p>
-      <p>Flashcard {{ flashcardService.currentIndex + 1 }} of {{ flashcardService.flashcards.length }}</p>
-      <button (click)="prev()" [disabled]="flashcardService.currentIndex === 0">Previous</button>
-      <button (click)="next()" [disabled]="flashcardService.currentIndex === flashcardService.flashcards.length - 1">Next</button>
     </div>
 
-    <div *ngIf="flashcardService.flashcards.length === 0">
-      <p>No flashcards to display. Please generate a summary.</p>
+    <p class="card-count">
+      Flashcard {{ flashcardService.currentIndex + 1 }} of {{ flashcardService.flashcards.length }}
+    </p>
+
+    <div class="flashcard-actions">
+      <button (click)="prev()" [disabled]="flashcardService.currentIndex === 0">Previous</button>
+      <button (click)="next()" [disabled]="flashcardService.currentIndex >= flashcardService.flashcards.length - 1">Next</button>
     </div>
-  `
+  </div>
+
+  <div *ngIf="flashcardService.flashcards.length === 0" class="no-cards">
+    <p>No flashcards to show. Generate a summary first.</p>
+  </div>
+`
 })
 export class Flashcards {
   constructor(public flashcardService: FlashcardService) {}

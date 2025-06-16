@@ -9,26 +9,28 @@ import { environment } from '../../environments/environment';
   standalone: true,
   imports: [FormsModule, CommonModule],
   template: `
-    <form (ngSubmit)="onSubmit()" style="margin-bottom: 2rem;">
+  <form (ngSubmit)="onSubmit()" class="note-form">
+    <label>
+      <span>Your Notes</span>
       <textarea
         [(ngModel)]="noteText"
         name="noteText"
-        placeholder="Paste your notes here..."
-        rows="6"
         required
-        style="width: 100%; padding: 1rem; font-size: 1rem;"
+        rows="6"
+        placeholder="Paste your notes here..."
       ></textarea>
-      <br />
-      <button type="submit" [disabled]="loading" style="margin-top: 1rem;">
-        {{ loading ? 'Summarizing...' : 'Summarize' }}
-      </button>
-    </form>
+    </label>
 
-    <div *ngIf="summary">
-      <h3>Summary:</h3>
-      <p>{{ summary }}</p>
-    </div>
-  `
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Summarizing...' : 'Generate Summary' }}
+    </button>
+  </form>
+
+  <div *ngIf="summary" class="summary-box">
+    <h3>Summary</h3>
+    <p>{{ summary }}</p>
+  </div>
+`
 })
 export class NoteInput {
   noteText = '';

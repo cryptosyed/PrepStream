@@ -7,11 +7,18 @@ import { Flashcards } from './flashcards/flashcards';
   standalone: true,
   imports: [NoteInput, Flashcards],
   template: `
-    <main style="max-width: 800px; margin: auto; padding: 2rem; font-family: Arial;">
-      <h1 style="text-align: center; font-size: 2rem; margin-bottom: 2rem;">PrepStream</h1>
+  <main class="app-container">
+    <div class="card">
+      <header class="header">
+        <h1>PrepStream</h1>
+        <p>Summarize and study smarter</p>
+      </header>
+
       <app-note-input></app-note-input>
+      <hr />
       <app-flashcards></app-flashcards>
-    </main>
-  `
+    </div>
+  </main>
+`
 })
 export class App {}
