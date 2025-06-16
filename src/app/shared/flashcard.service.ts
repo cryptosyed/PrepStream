@@ -11,10 +11,33 @@ export class FlashcardService {
   currentIndex = 0;
 
   generateFlashcards(text: string) {
-    this.flashcards = [
-      { question: 'What is the main idea?', answer: 'Mock answer 1' },
-      { question: 'List one key point.', answer: 'Mock answer 2' }
-    ];
+    const sentences = text
+      .split('.')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    this.flashcards = [];
+
+    for (let i = 0; i < Math.min(sentences.length, 5); i++) {
+      const sentence = sentences[i];
+
+      let question = '';
+      if (sentence.toLowerCase().startsWith('it')) {
+        question = `What is ${sentence.split(' ')[1]}?`;
+      } else if (sentence.includes(' because ')) {
+        question = `Why ${sentence.split(' because ')[0]}?`;
+      } else if (sentence.toLowerCase().includes('used')) {
+        question = `What is ${sentence.split(' ')[0]} used for?`;
+      } else {
+        question = `Explain: ${sentence.split(' ')[0]}...`;
+      }
+
+      this.flashcards.push({
+        question,
+        answer: sentence
+      });
+    }
+
     this.currentIndex = 0;
   }
 

@@ -16,9 +16,10 @@ import { environment } from '../../environments/environment';
         placeholder="Paste your notes here..."
         rows="6"
         required
+        style="width: 100%; padding: 1rem; font-size: 1rem;"
       ></textarea>
       <br />
-      <button type="submit" [disabled]="loading">
+      <button type="submit" [disabled]="loading" style="margin-top: 1rem;">
         {{ loading ? 'Summarizing...' : 'Summarize' }}
       </button>
     </form>
@@ -30,36 +31,32 @@ import { environment } from '../../environments/environment';
   `
 })
 export class NoteInput {
-  noteText = '';   // User's raw note input
-  summary = '';    // AI-generated summary of notes
-  loading = false; // Tracks loading state during API call
+  noteText = '';
+  summary = '';
+  loading = false;
 
   constructor(private flashcardService: FlashcardService) {}
 
   async onSubmit() {
-    // Skip empty submissions
     if (!this.noteText.trim()) return;
     this.loading = true;
     this.summary = '';
 
     try {
-      // Call Hugging Face API for summarization
       const response = await fetch('https://api-inference.huggingface.co/models/facebook/bart-large-cnn', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${environment.huggingFaceKey}`, // stored securely in env file
+          'Authorization': `Bearer ${environment.huggingFaceKey}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ inputs: this.noteText })
       });
 
       const result = await response.json();
-      console.log('Hugging Face API response:', result);
-
-      // Extract summary text from response
       const output = result?.[0]?.summary_text;
+
       this.summary = output || 'Could not summarize this.';
-      this.flashcardService.generateFlashcards(this.summary);  // Generate flashcards from summary
+      if (output) this.flashcardService.generateFlashcards(this.summary);
 
     } catch (err) {
       console.error('Error summarizing:', err);
