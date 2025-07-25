@@ -1,0 +1,37 @@
+<div class="flex flex-col items-center justify-between glass-panel p-6 min-h-[400px]">
+    <!-- Initial State -->
+    <div *ngIf="flashcards.length === 0" class="text-center">
+        <svg class="mx-auto h-16 w-16 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <h3 class="mt-2 text-lg font-medium text-gray-300">Flashcards will appear here</h3>
+        <p class="mt-1 text-sm text-gray-500">Generate a summary to get started.</p>
+    </div>
+
+    <!-- Flashcard Display -->
+    <ng-container *ngIf="flashcards.length > 0">
+        <div class="flashcard w-full flex-grow" (click)="flipCard()" [class.is-flipped]="isFlipped">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <div class="flashcard-content">
+                        <p class="text-sm text-indigo-300 mb-2">QUESTION</p>
+                        <p class="text-xl font-semibold text-center">{{ currentCard?.question }}</p>
+                    </div>
+                    <p class="text-xs text-gray-400">Click to flip</p>
+                </div>
+                <div class="flashcard-back">
+                    <div class="flashcard-content">
+                        <p class="text-sm text-indigo-300 mb-2">ANSWER</p>
+                        <p class="text-lg text-center">{{ currentCard?.answer }}</p>
+                    </div>
+                    <p class="text-xs text-gray-400">Click to flip</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-between w-full mt-6">
+            <button class="secondary-button px-4 py-2 rounded-lg font-medium" (click)="previousCard()" [disabled]="currentCardIndex === 0">Previous</button>
+            <p class="text-sm text-gray-400">{{ currentCardIndex + 1 }} / {{ flashcards.length }}</p>
+            <button class="secondary-button px-4 py-2 rounded-lg font-medium" (click)="nextCard()" [disabled]="currentCardIndex === flashcards.length - 1">Next</button>
+        </div>
+    </ng-container>
+</div>

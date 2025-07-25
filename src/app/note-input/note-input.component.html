@@ -1,0 +1,27 @@
+<div class="flex flex-col gap-6">
+    <div class="glass-panel p-6">
+        <label for="note-input" class="block text-lg font-semibold mb-3 text-gray-200">Your Notes</label>
+        <textarea
+            id="note-input"
+            rows="10"
+            class="w-full p-4 bg-transparent border border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-300 resize-none custom-scrollbar"
+            placeholder="Paste your lecture notes, article, or any text here..."
+            [(ngModel)]="noteText"
+            [disabled]="isLoading"
+        ></textarea>
+        <button
+            id="generate-btn"
+            class="primary-button w-full mt-4 py-3 rounded-lg font-semibold text-lg"
+            (click)="onGenerate()"
+            [disabled]="isLoading || !noteText.trim()"
+        >
+            {{ isLoading ? 'Generating...' : 'Generate' }}
+        </button>
+    </div>
+
+
+
+    <div *ngIf="error" class="text-center text-red-400 glass-panel p-4">
+        <p>Error: {{ error }}</p>
+    </div>
+</div>

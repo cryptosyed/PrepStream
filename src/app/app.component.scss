@@ -1,0 +1,31 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    background-color: #0c0a1e;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 84rem;
+    background: linear-gradient(145deg, #1e1b4b 0%, #1d1a3b 100%);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+/* VVV THESE ARE THE STYLES FOR THE SUMMARY SECTION VVV */
+.summary-section {
+    text-align: center;
+}
+
+.summary-text {
+    color: #d1d5db;
+    line-height: 1.75;
+    max-width: 65ch; /* Optimal character count per line for readability */
+    margin-left: auto;
+    margin-right: auto;
+}

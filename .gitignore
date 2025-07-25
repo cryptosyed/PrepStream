@@ -1,5 +1,3 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
 # Compiled output
 /dist
 /tmp
@@ -10,6 +8,7 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+package-lock.json
 
 # IDEs and editors
 .idea/
@@ -40,3 +39,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Local environment files
+src/environments/environment.ts
+
+# Local environment files with secrets
+src/environments/environment.ts
+src/environments/environment.development.ts

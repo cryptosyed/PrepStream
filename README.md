@@ -1,59 +1,77 @@
-# PrepstreamAngularApp
+PrepStream ✨
+PrepStream is a modern, AI-powered study application designed to help you learn smarter, not harder. Simply paste your notes, and PrepStream will generate a concise summary and a set of interactive flashcards using the power of the Google Gemini API.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
+(Note: You can replace this with a screenshot of your running application)
 
-## Development server
+🚀 Key Features
+AI-Powered Summaries: Get the key takeaways from long texts instantly.
 
-To start a local development server, run:
+Automatic Flashcard Generation: Create a deck of study cards from your notes with a single click.
 
-```bash
+Interactive Studying: Flip flashcards to reveal answers and track your progress.
+
+Sleek, Modern UI: A beautiful, responsive, dark-themed interface that's easy on the eyes.
+
+🛠️ Tech Stack
+Front-End: Angular (v17+)
+
+Styling: Tailwind CSS
+
+Language: TypeScript
+
+AI Integration: Google Gemini API
+
+⚙️ Setup and Installation
+Follow these steps to get PrepStream running on your local machine.
+
+1. Prerequisites
+   Make sure you have Node.js (which includes npm) and the Angular CLI installed on your system.
+
+2. Clone the Repository
+   git clone [https://github.com/your-username/prepstream-angular-app.git](https://github.com/your-username/prepstream-angular-app.git)
+   cd prepstream-angular-app
+
+3. Install Dependencies
+   Run the following command in the project's root directory to install all the necessary packages:
+
+npm install
+
+4. Set Up Your API Key
+   This is a crucial step for the AI features to work.
+
+Navigate to the src/environments/ folder.
+
+You will find a file named environment.development.ts. Open it.
+
+Replace the placeholder text 'YOUR_GEMINI_API_KEY_HERE' with your actual Google Gemini API key.
+
+// src/environments/environment.development.ts
+export const environment = {
+production: false,
+geminiApiKey: 'YOUR_GEMINI_API_KEY_HERE' // <-- PASTE YOUR KEY HERE
+};
+
+(Optional) For production builds, do the same in the environment.ts file.
+
+Security Note: The environment files are included in the .gitignore file to prevent your API key from being accidentally committed to a public repository.
+
+▶️ How to Run the Application
+Once the setup is complete, you can start the local development server with this command:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Now, open your web browser and navigate to http://localhost:4200/. The application should be running!
 
-## Code scaffolding
+📂 Project Structure
+The project follows a standard Angular structure, with the main logic organized as follows:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+src/app/
+├── flashcards/ # Handles the display and interaction of flashcards
+├── note-input/ # Manages the user's text input and the "Generate" button
+└── shared/ # Contains services and pipes used across the app
+├── flashcard.service.ts # Manages flashcard state
+└── gemini.service.ts # Handles all communication with the Gemini API
 
-```bash
-ng generate component component-name
-```
+Happy studying!
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Made with ❤️ by Syed Muzammil
